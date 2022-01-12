@@ -4,18 +4,20 @@ import MyNavbar from './Components/MyNavbar';
 import TvShows from './Components/TvShows';
 import MoviesRow from './Components/MoviesRow';
 import Footer from './Components/Footer'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
-  return (
+  return(
     <>
-    <BrowserRouter>
+      <BrowserRouter>
         <MyNavbar />
-        <TvShows />
-        <MoviesRow />
+        <Routes>
+          <Route path="/tv-shows" element={<TvShows />}/>
+          <Route path="/" element={<MoviesRow />}/>
+        </Routes>
         <Footer />
-    </BrowserRouter>
+      </BrowserRouter>
     </>
-  );
+  )
 }
 export default App;

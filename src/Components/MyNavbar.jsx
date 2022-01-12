@@ -2,7 +2,7 @@
 import logo from "../assets/netflix_logo.png";
 import { Navbar, Nav, InputGroup, FormControl } from "react-bootstrap";
 import {Component} from 'react'
-
+import {Link} from 'react-router-dom'
 const MyNavbar =() =>{
  
         return(
@@ -20,9 +20,11 @@ const MyNavbar =() =>{
                 <Nav.Link active className="font-weight-bold" href="/">
                 Home
                 </Nav.Link>
-                <Nav.Link className="font-weight-bold" href="/">
-                TV Shows
-                </Nav.Link>
+                <Link to='/tv-shows'>
+                    <Nav.Link className="font-weight-bold" href="/">
+                    TV Shows
+                    </Nav.Link>
+                </Link>
                 <Nav.Link className="font-weight-bold" href="/">
                 Movies
                 </Nav.Link>

@@ -1,4 +1,6 @@
-const TvShows = () => (
+
+const TvShows = () => {
+  return(
     <div
       className="d-flex"
       style={{
@@ -99,6 +101,6 @@ const TvShows = () => (
         </div>
       </div>
     </div>
-  );
+  )};
   
   export default TvShows;
