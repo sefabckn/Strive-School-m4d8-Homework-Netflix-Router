@@ -40,6 +40,7 @@ const[isError, setIsError] = useState(false)
         "https://www.omdbapi.com/?apikey=99963efb&s=harry-potter"
       );
       if (response.ok) {
+        console.log(response)
         let data = await response.json();
        /*  this.setState({
           movies: data.Search,
@@ -64,6 +65,7 @@ const[isError, setIsError] = useState(false)
       }); */
       setIsLoading(false)
       setIsError(false)
+
     }
   };
 
@@ -168,7 +170,7 @@ const[isError, setIsError] = useState(false)
                 )
                 .slice(0, 6)
                 .map((res) => (
-                  <SingleMovie src={res.Poster} title={res.Title}/>
+                  <SingleMovie src={res.Poster} title={res.Title} id={res.imdbID}/>
                 ))}
             </div>
           </div>
@@ -190,7 +192,7 @@ const[isError, setIsError] = useState(false)
                 )
                 .slice(0, 6)
                 .map((res) => (
-                  <SingleMovie src={res.Poster} title={res.Title}/>
+                  <SingleMovie src={res.Poster} title={res.Title} id={res.imdbID}/>
                 ))}
             </div>
           </div>
@@ -212,7 +214,7 @@ const[isError, setIsError] = useState(false)
                 )
                 .slice(0, 6)
                 .map((res) => (
-                  <SingleMovie src={res.Poster} title={res.Title}/>
+                  <SingleMovie src={res.Poster} title={res.Title} id={res.imdbID}/>
                 ))}
             </div>
           </div>
