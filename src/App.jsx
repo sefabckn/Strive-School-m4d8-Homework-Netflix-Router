@@ -4,13 +4,17 @@ import MyNavbar from './Components/MyNavbar';
 import TvShows from './Components/TvShows';
 import MoviesRow from './Components/MoviesRow';
 import Footer from './Components/Footer'
+import {BrowserRouter} from 'react-router-dom'
+
 function App() {
   return (
     <>
-      <MyNavbar />
-      <TvShows />
-      <MoviesRow />
-      <Footer />
+    <BrowserRouter>
+        <MyNavbar />
+        <TvShows />
+        <MoviesRow />
+        <Footer />
+    </BrowserRouter>
     </>
   );
 }

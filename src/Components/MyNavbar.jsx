@@ -3,8 +3,8 @@ import logo from "../assets/netflix_logo.png";
 import { Navbar, Nav, InputGroup, FormControl } from "react-bootstrap";
 import {Component} from 'react'
 
-class MyNavbar extends Component{
-    render(){
+const MyNavbar =() =>{
+ 
         return(
         <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#1a1919" }}>
             <Navbar.Brand href="/">
@@ -43,6 +43,6 @@ class MyNavbar extends Component{
             </Navbar.Collapse>
       </Navbar>
         )
-    }
+    
 }
 export default MyNavbar

@@ -4,9 +4,10 @@ import SingleMovie from './SingleMovie'
 import Alert from 'react-bootstrap/Alert'
 import { Spinner } from "react-bootstrap";
 import {Container, Row, Col, Form} from 'react-bootstrap'
+import { useEffect ,useState} from 'react';
 
-class MovieRow extends Component {
-  state = {
+const MovieRow = () =>{
+/*   state = {
     movies: [],
     movies2: [],
     movies3: [],
@@ -14,95 +15,123 @@ class MovieRow extends Component {
     isLoading: true,
     isError: false,
   };
+ */
+const [movies, setMovies]= useState([])
+const [movies2, setMovies2]= useState([])
+const [movies3, setMovies3]= useState([])
+const[searchQuery, setSearcQuery] = useState([])
+const[isLoading, setIsLoading] = useState(true)
+const[isError, setIsError] = useState(false)
 
-  componentDidMount = () => {
+  /* componentDidMount = () => {
     this.fetchMovies();
     this.fetchMovies2();
     this.fetchMovies3();
-  };
+  }; */
+  useEffect( ()=>{
+     fetchMovies();
+     fetchMovies2();
+     fetchMovies3();
+  }, []);
 
-  fetchMovies = async () => {
+  const fetchMovies = async () => {
     try {
       let response = await fetch(
         "https://www.omdbapi.com/?apikey=99963efb&s=harry-potter"
       );
       if (response.ok) {
         let data = await response.json();
-        this.setState({
+       /*  this.setState({
           movies: data.Search,
           isLoading: false,
-        });
-        console.log(this.state.movies);
+        }); */
+        setMovies(data.Search)
+        setIsLoading(false)
+        console.log(movies);
       } else {
         // if we fall here we're getting an error, maybe a 404
-        this.setState({
+        /* this.setState({
           isLoading: false,
           isError: true,
-        });
+        }); */
+        setIsLoading(false)
+        setIsError(true)
       }
     } catch (error) {
-      this.setState({
+     /*  this.setState({
         isLoading: false,
         isError: true,
-      });
+      }); */
+      setIsLoading(false)
+      setIsError(false)
     }
   };
 
-  fetchMovies2 = async () => {
+ const fetchMovies2 = async () => {
     try {
       let response = await fetch(
         "https://www.omdbapi.com/?apikey=99963efb&s=lord"
       );
       if (response.ok) {
         let data = await response.json();
-        this.setState({
+        /* this.setState({
           movies2: data.Search,
           isLoading: false,
-        });
-        console.log(this.state.movies2);
+        }); */
+        setMovies2(data.Search)
+        console.log(movies2);
       } else {
         // if we fall here we're getting an error, maybe a 404
-        this.setState({
+        /* this.setState({
           isLoading: false,
           isError: true,
-        });
+        }); */
+        setIsLoading(false)
+        setIsError(true)
       }
     } catch (error) {
-      this.setState({
+    /*   this.setState({
         isLoading: false,
         isError: true,
-      });
+      }); */
+      setIsLoading(false)
+      setIsError(true)
     }
   };
 
-  fetchMovies3 = async () => {
+  const fetchMovies3 = async () => {
     try {
       let response = await fetch(
         "https://www.omdbapi.com/?apikey=99963efb&s=avengers"
       );
       if (response.ok) {
         let data = await response.json();
-        this.setState({
+       /*  this.setState({
           movies3: data.Search,
           isLoading: false,
-        });
-        console.log(this.state.movies2);
+        }); */
+        setMovies3(data.Search)
+        console.log(movies3);
       } else {
         // if we fall here we're getting an error, maybe a 404
-        this.setState({
+        /* this.setState({
           isLoading: false,
           isError: true,
-        });
+        }); */
+        setIsLoading(false)
+        setIsError(true)
       }
     } catch (error) {
-      this.setState({
+      /* this.setState({
         isLoading: false,
         isError: true,
-      });
+      }); */
+      setIsLoading(false)
+      setIsError(true)
     }
   };
 
-  render() {
+ 
     return (
       <div>
         <Container>
@@ -112,9 +141,10 @@ class MovieRow extends Component {
                 <Form.Control
                   type="text"
                   placeholder="Search movies"
-                  value={this.state.searchQuery}
+                  value={searchQuery}
                   onChange={(e) =>
-                    this.setState({ searchQuery: e.target.value })
+                    //this.setState({ searchQuery: e.target.value })
+                    setSearcQuery(e.target.value)
                   }
                 />
               </Form.Group>
@@ -129,12 +159,12 @@ class MovieRow extends Component {
             </div>
 
             <div class="row mx-n1 mb-lg-5">
-              {this.state.isLoading && (
+              {isLoading && (
                 <Spinner animation="border" variant="info" />
               )}
-              {this.state.movies
+              {movies
                 .filter((res) =>
-                  res.Title.toLowerCase().includes(this.state.searchQuery)
+                  res.Title.toLowerCase().includes(searchQuery)
                 )
                 .slice(0, 6)
                 .map((res) => (
@@ -151,12 +181,12 @@ class MovieRow extends Component {
             </div>
 
             <div class="row mx-n1 mb-lg-5">
-              {this.state.isLoading && (
+              {isLoading && (
                 <Spinner animation="border" variant="info" />
               )}
-              {this.state.movies2
+              {movies2
                 .filter((res) =>
-                  res.Title.toLowerCase().includes(this.state.searchQuery)
+                  res.Title.toLowerCase().includes(searchQuery)
                 )
                 .slice(0, 6)
                 .map((res) => (
@@ -173,12 +203,12 @@ class MovieRow extends Component {
             </div>
 
             <div class="row mx-n1 mb-lg-5 text-light">
-              {this.state.isLoading && (
+              {isLoading && (
                 <Spinner animation="border" variant="info" />
               )}
-              {this.state.movies3
+              {movies3
                 .filter((res) =>
-                  res.Title.toLowerCase().includes(this.state.searchQuery)
+                  res.Title.toLowerCase().includes(searchQuery)
                 )
                 .slice(0, 6)
                 .map((res) => (
@@ -189,7 +219,7 @@ class MovieRow extends Component {
         </section>
       </div>
     );
-  }
+  
 }
 
 export default MovieRow;
